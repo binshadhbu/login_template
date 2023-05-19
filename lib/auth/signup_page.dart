@@ -161,64 +161,70 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 30,),
-          Container (
-            width: w*.4,
-            height:h*0.08,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
-                  fit:BoxFit.cover
-              ),
-            ),
-            child:Center(
-              child: Text(
-                "Sign un",
-                style:TextStyle(
-                  fontSize: 25,
-                  fontWeight:FontWeight.bold,
-                  color: Colors.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container (
+                width: w*.4,
+                height:h*0.08,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                      image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
+                      fit:BoxFit.cover
+                  ),
+                ),
+                child:Center(
+                  child: Text(
+                    "Sign up",
+                    style:TextStyle(
+                      fontSize: 25,
+                      fontWeight:FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Text(
+                "  or",
+                style:TextStyle(
+                  fontSize: 30,
+                  color: Colors.grey[500],
+                ),
+              ),
+              Wrap(
+                children: List<Widget>.generate(
+                    1,
+                        (index){
+                      return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: CircleAvatar(
+                          radius:40,
+                          backgroundColor: Colors.white70,
+                          child: CircleAvatar(
+                            radius: 35,
+                            backgroundImage: AssetImage('assets/google.png'),
+                            backgroundColor: Colors.white,),
+                        ),
+                      );
+                    }
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 10,),
-          RichText(text: TextSpan(
-            recognizer: TapGestureRecognizer()..onTap=()=>Get.back(),
-            text:"already have an account?, Login",
-            style:  TextStyle(
-              fontSize: 20,
-              color: Colors.grey[500],
-            ),
-          )),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: RichText(text: TextSpan(
+              recognizer: TapGestureRecognizer()..onTap=()=>Get.back(),
+              text:"already have an account?, Login",
+              style:  TextStyle(
+                fontSize: 20,
+                color: Colors.grey[500],
+              ),
+            )),
+          ),
           SizedBox(height:w*0.05),
-          RichText(text: TextSpan(
-            text:"Sign up using Google",
-            style:  TextStyle(
-              fontSize: 20,
-              color: Colors.grey[500],
-            ),
-
-          )
-          ),
-          Wrap(
-            children: List<Widget>.generate(
-              1,
-                (index){
-                return Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: CircleAvatar(
-                    radius:40,
-                    backgroundColor: Colors.white70,
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage('assets/google.png'),
-                      backgroundColor: Colors.white,),
-                  ),
-                );
-                }
-            ),
-          ),
         ],
       ),
 

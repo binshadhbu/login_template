@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                children: [
                  Text("Hello",
                  style:TextStyle(
-                   fontSize: 70,
+                   fontSize: 40,
                    fontWeight:FontWeight.bold,
                  ),
                  ),
@@ -151,29 +151,59 @@ class _LoginPageState extends State<LoginPage> {
                ],
              ),
           ),
-          SizedBox(height: 50,),
-          Container (
-            width: w*.4,
-            height:h*0.08,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
-                  fit:BoxFit.cover
-              ),
-            ),
-            child:Center(
-              child: Text(
-                "Sign in",
-                style:TextStyle(
-                  fontSize: 25,
-                  fontWeight:FontWeight.bold,
-                  color: Colors.white,
+          SizedBox(height: 30,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container (
+                width: w*.4,
+                height:h*0.08,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                      image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
+                      fit:BoxFit.cover
+                  ),
+                ),
+                child:Center(
+                  child: Text(
+                    "Sign up",
+                    style:TextStyle(
+                      fontSize: 25,
+                      fontWeight:FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Text(
+                "  or",
+                style:TextStyle(
+                  fontSize: 30,
+                  color: Colors.grey[500],
+                ),
+              ),
+              Wrap(
+                children: List<Widget>.generate(
+                    1,
+                        (index){
+                      return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: CircleAvatar(
+                          radius:40,
+                          backgroundColor: Colors.white70,
+                          child: CircleAvatar(
+                            radius: 35,
+                            backgroundImage: AssetImage('assets/google.png'),
+                            backgroundColor: Colors.white,),
+                        ),
+                      );
+                    }
+                ),
+              ),
+            ],
           ),
-          SizedBox(height:w*0.08),
+          SizedBox(height:w*0.05),
           RichText(text: TextSpan(
             text:"Don't have an account?",
             style:  TextStyle(

@@ -16,7 +16,7 @@ class  AuthController extends GetxController {
       super .onReady();
       _user=Rx<User?>(auth.currentUser);
       //user would be notified
-      _user.bindStream(auth.userChanges());
+    _user.bindStream(auth.userChanges());
       ever(_user, _initialScreen);
     }
     _initialScreen(User? user ){
@@ -25,7 +25,7 @@ class  AuthController extends GetxController {
         Get.offAll(()=>LoginPage());
       }else{
         print("welcome page");
-        Get.offAll(()=>WelcomePage(email: 'user.email',));
+        Get.offAll(()=>WelcomePage(email: user.email,));
       }
     }
     Future<void> register(String email,password) async {
@@ -47,7 +47,7 @@ class  AuthController extends GetxController {
       }
 
   }
-    Future<void> login(String email,password) async{
+    Future<void> login(String email,password) async {
     try{
       await auth.signInWithEmailAndPassword(email: email, password: password);
     }catch(e){

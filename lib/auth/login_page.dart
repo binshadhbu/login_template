@@ -1,18 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_template/auth/auth_controller.dart';
 import 'package:login_template/auth/signup_page.dart';
 import 'package:get/get.dart';
 
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+
+   LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -70,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                      ]
                    ),
                    child: TextField(
+                     controller: emailController,
                      decoration:InputDecoration(
                        hintText: "  Email id",
                        prefixIcon: Padding(
@@ -115,6 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                        ]
                    ),
                    child: TextField(
+                     controller: passwordController,
+                     obscureText: true,
                      decoration:InputDecoration(
                        hintText: "  Password",
                        hintStyle: TextStyle(
@@ -161,32 +168,37 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container (
-                width: w*.4,
-                height:h*0.08,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 10,
-                      spreadRadius: 7,
-                      offset: Offset(1,1),
-                      color: Colors.grey.withOpacity(0.5),
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                      image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
-                      fit:BoxFit.cover
+              GestureDetector(
+                onTap: (){
+                  AuthController.instance.login(emailController.text.trim(),passwordController.text.trim());
+                },
+                child: Container (
+                  width: w*.4,
+                  height:h*0.08,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.5),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(30),
+                    image: DecorationImage(
+                        image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
+                        fit:BoxFit.cover
+                    ),
                   ),
-                ),
-                child:Center(
-                  child: Text(
-                    "Sign up",
-                    style:TextStyle(
-                      fontSize: 25,
-                      fontWeight:FontWeight.bold,
-                      color: Colors.white,
+                  child:Center(
+                    child: Text(
+                      "Sign up",
+                      style:TextStyle(
+                        fontSize: 25,
+                        fontWeight:FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

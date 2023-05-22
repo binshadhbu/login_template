@@ -5,8 +5,6 @@ import 'package:login_template/auth/auth_controller.dart';
 import 'package:flutter/services.dart';
 
 class SignUpPage extends StatelessWidget {
-  // var emailController=TextEditingController();
-  // var passwordController=TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
    SignUpPage({Key? key}) : super(key: key);
@@ -128,6 +126,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     child: TextField(
                       controller: passwordController,
+                      obscureText: true,
                       decoration:InputDecoration(
                         hintText: "     Password",
                         // prefixIcon: Padding(

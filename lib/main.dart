@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:login_template/auth/auth_controller.dart';
 import 'package:login_template/auth/login_page.dart';
 import 'package:login_template/auth/signup_page.dart';
+import 'package:login_template/auth/splash_screen.dart';
 import 'package:login_template/auth/welcome_page.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: SplashScreen(),
     );
   }
 }

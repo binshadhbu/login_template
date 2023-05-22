@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:login_template/auth/auth_controller.dart';
 
 class WelcomePage extends StatelessWidget {
-  String email;
+  String? email;
   WelcomePage({Key? key,required this.email}) : super(key: key);
   
   @override
@@ -50,7 +50,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  email,
+                  email!,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.grey[700],

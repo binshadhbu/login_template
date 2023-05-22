@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:login_template/auth/auth_controller.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
-
+  String email;
+  WelcomePage({Key? key,required this.email}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -48,7 +50,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "abc@a.com",
+                  email,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.grey[700],
@@ -58,23 +60,37 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height:200),
-          Container (
-            width: w*.4,
-            height:h*0.08,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
-                  fit:BoxFit.cover
+          GestureDetector(
+            onTap:(){
+              AuthController.instance.logOut();
+          },
+            child: Container (
+              width: w*.4,
+              height:h*0.08,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 10,
+                    spreadRadius: 7,
+                    offset: Offset(1,1),
+                    color: Colors.grey.withOpacity(0.5),
+                  )
+                ],
+                borderRadius: BorderRadius.circular(30),
+                image: DecorationImage(
+                    image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
+                    fit:BoxFit.cover
+                ),
               ),
-            ),
-            child:Center(
-              child: Text(
-                "Sign out",
-                style:TextStyle(
-                  fontSize: 25,
-                  fontWeight:FontWeight.bold,
-                  color: Colors.white,
+              child:Center(
+                child: Text(
+                  "Sign out",
+                  style:TextStyle(
+                    fontSize: 25,
+                    fontWeight:FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

@@ -1,15 +1,27 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_template/auth/auth_controller.dart';
+import 'package:flutter/services.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  // var emailController=TextEditingController();
+  // var passwordController=TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+   SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Column(
         children:[
@@ -67,7 +79,7 @@ class SignUpPage extends StatelessWidget {
                       ]
                   ),
                   child: TextField(
-
+                    controller: emailController,
                     decoration:InputDecoration(
                       hintText: "  Email id",
                       prefixIcon: Padding(
@@ -98,89 +110,96 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20,),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 10,
-                          spreadRadius: 7,
-                          offset: Offset(1,1),
-                          color: Colors.grey.withOpacity(0.5),
-                        )
-                      ]
-                  ),
-                  child: TextField(
-                    decoration:InputDecoration(
-                      hintText: "     Password",
-                      // prefixIcon: Padding(
-                      //   padding: const EdgeInsets.only(left:20),
-                      //   child: Icon(Icons.password,color: Colors.grey[500],size: 30,),
-                      // ),
-                      hintStyle: TextStyle(
+                SizedBox(height: 10,),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 10,
+                            spreadRadius: 7,
+                            offset: Offset(1,1),
+                            color: Colors.grey.withOpacity(0.5),
+                          )
+                        ]
+                    ),
+                    child: TextField(
+                      controller: passwordController,
+                      decoration:InputDecoration(
+                        hintText: "     Password",
+                        // prefixIcon: Padding(
+                        //   padding: const EdgeInsets.only(left:20),
+                        //   child: Icon(Icons.password,color: Colors.grey[500],size: 30,),
+                        // ),
+                        hintStyle: TextStyle(
 
-                        color: Colors.grey[500],
-                        fontWeight: FontWeight.bold,
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 2,
+                          color: Colors.grey[500],
+                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 2,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
                         ),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(height: 20,),
-                // Row(
-                //   children: [
-                //     Expanded(child: Container(),),
-                //     Text("forgot password?",
-                //       style:TextStyle(
-                //         fontSize: 20,
-                //         color: Colors.grey[500],
-                //       ),
-                //     ),
-                //   ],
-                // ),
-
               ],
             ),
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container (
-                width: w*.4,
-                height:h*0.08,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                      image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
-                      fit:BoxFit.cover
+              GestureDetector(
+                onTap: (){
+                  print(emailController.text);
+                  AuthController.instance.register(emailController.text.trim(), passwordController.text.trim());
+                },
+                child: Container (
+                  width: w*.4,
+                  height:h*0.08,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.5),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(30),
+                    image: DecorationImage(
+                        image:AssetImage('assets/loginbtn.png'),//path of image in the login screen
+                        fit:BoxFit.cover
+                    ),
                   ),
-                ),
-                child:Center(
-                  child: Text(
-                    "Sign up",
-                    style:TextStyle(
-                      fontSize: 25,
-                      fontWeight:FontWeight.bold,
-                      color: Colors.white,
+                  child:Center(
+                    child: Text(
+                      "Sign up",
+                      style:TextStyle(
+                        fontSize: 25,
+                        fontWeight:FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

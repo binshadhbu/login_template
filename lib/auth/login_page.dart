@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:login_template/auth/signup_page.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +15,15 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Column(
         children:[
@@ -39,17 +45,17 @@ class _LoginPageState extends State<LoginPage> {
                children: [
                  Text("Hello",
                  style:TextStyle(
-                   fontSize: 40,
+                   fontSize: h*0.05,
                    fontWeight:FontWeight.bold,
                  ),
                  ),
-                 Text("Sign in",
+                 Text("Login",
                    style:TextStyle(
-                     fontSize: 20,
+                     fontSize: h*0.02,
                      color: Colors.grey[500],
                    ),
                  ),
-                 SizedBox(height: 50,),
+                 SizedBox(height: h*0.05,),
                  Container(
                    decoration: BoxDecoration(
                      color: Colors.white,
@@ -94,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                      ),
                    ),
                  ),
-                 SizedBox(height: 20,),
+                 SizedBox(height: 15,),
                  Container(
                    decoration: BoxDecoration(
                        color: Colors.white,
@@ -135,13 +141,13 @@ class _LoginPageState extends State<LoginPage> {
                      ),
                    ),
                  ),
-                 SizedBox(height: 20,),
+                 SizedBox(height: h*0.02,),
                  Row(
                    children: [
                      Expanded(child: Container(),),
                      Text("forgot password?",
                        style:TextStyle(
-                         fontSize: 20,
+                         fontSize: h*0.02,
                          color: Colors.grey[500],
                        ),
                      ),
@@ -151,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                ],
              ),
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: h*0.02,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -159,6 +165,15 @@ class _LoginPageState extends State<LoginPage> {
                 width: w*.4,
                 height:h*0.08,
                 decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      spreadRadius: 7,
+                      offset: Offset(1,1),
+                      color: Colors.grey.withOpacity(0.5),
+                    )
+                  ],
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
                       image:AssetImage('assets/loginbtn.png'),//path of image in the login screen

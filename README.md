@@ -1,6 +1,6 @@
 # login_template
 
-A new Flutter project.
+A login and lgout template for flutter apps.
 
 ## Getting Started
 

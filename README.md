@@ -1,6 +1,6 @@
 # login_template
 
-A login and lgout template for flutter apps works based on firebase authentication.
+A login and logout template for flutter apps works based on firebase authentication.
 
 ## Getting Started
 
